@@ -289,9 +289,20 @@ function Server(serverConfig = {}) {
         message: 'Some error occurred.',
       });
     });
-    app.listen(port, () => {
-      appLogger(`Listening at port ${port}`);
-    });
+    function tryListen(p) {
+      const serverInstance = app.listen(p, () => {
+        appLogger(`Listening at port ${p}`);
+      });
+      serverInstance.on('error', (err) => {
+        if (err.code === 'EADDRINUSE') {
+          appLogger(`Port ${p} in use, trying ${p + 1}...`);
+          tryListen(p + 1);
+        } else {
+          appLogger.error([err.message, err.stack], 'server-listen-error');
+        }
+      });
+    }
+    tryListen(port);
   }
 
   return {

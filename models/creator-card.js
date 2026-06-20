@@ -39,7 +39,7 @@ const serviceRateSchema = new ModelSchema(
 const serviceRatesConfig = new ModelSchema(
   {
     currency: { type: SchemaTypes.String, enum: ['NGN', 'USD', 'GBP', 'GHS'], required: true },
-    rates: { type: [serviceRateSchema], required: true },
+    rates: { type: [serviceRateSchema.createDBSchema()], required: true },
   },
   { _id: false }
 );
@@ -50,8 +50,8 @@ const schemaConfig = {
   description: { type: SchemaTypes.String, maxlength: 500 },
   slug: { type: SchemaTypes.String, unique: true, sparse: true, minlength: 5, maxlength: 50 },
   creator_reference: { type: SchemaTypes.String, required: true, minlength: 20, maxlength: 20 },
-  links: { type: [linkSchema], default: [] },
-  service_rates: { type: serviceRatesConfig },
+  links: { type: [linkSchema.createDBSchema()], default: [] },
+  service_rates: { type: serviceRatesConfig.createDBSchema() },
   status: { type: SchemaTypes.String, enum: ['draft', 'published'], required: true },
   access_type: { type: SchemaTypes.String, enum: ['public', 'private'], default: 'public' },
   access_code: { type: SchemaTypes.String },
