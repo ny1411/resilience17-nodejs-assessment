@@ -78,24 +78,24 @@ Build a **Creator Card microservice API** that lets creators publish a shareable
   - [x] Return the deleted card data (in the same format as the creation response) with HTTP 200.
 
 ### 6. Verification & Testing
-- [ ] **Positive Test Cases**
-  - [ ] Test Case 1: Execute full card creation and verify HTTP 200 and data mapping.
-  - [ ] Test Case 2: Verify slug auto-generation from title (HTTP 200).
-  - [ ] Test Case 3: Create a private card and verify the `access_code` is returned (HTTP 200).
-  - [ ] Test Case 4: Retrieve a public, published card successfully (HTTP 200).
-  - [ ] Test Case 5: Retrieve a private card with the correct pin (HTTP 200).
-  - [ ] Test Case 6: Delete a card and verify the response structure (HTTP 200).
-- [ ] **Negative / Edge Test Cases**
-  - [ ] Test Case 7: Create a card with a duplicate slug (Expect HTTP 400, `SL02`).
-  - [ ] Test Case 8: Create a private card missing the `access_code` (Expect HTTP 400, `AC01`).
-  - [ ] Test Case 9: Create a public card with an `access_code` (Expect HTTP 400, `AC05`).
-  - [ ] Test Case 10: Trigger a framework validation failure, e.g., invalid status (Expect HTTP 400).
-  - [ ] Test Case 11: Attempt to retrieve a non-existent card (Expect HTTP 404, `NF01`).
-  - [ ] Test Case 12: Attempt to retrieve a draft card (Expect HTTP 404, `NF02`).
-  - [ ] Test Case 13: Attempt to retrieve a private card without a pin (Expect HTTP 403, `AC03`).
-  - [ ] Test Case 14: Attempt to retrieve a private card with a wrong pin (Expect HTTP 403, `AC04`).
-  - [ ] Test Case 15: Attempt to delete a non-existent card (Expect HTTP 404, `NF01`).
-  - [ ] Test Case 16: Attempt to retrieve a previously deleted card (Expect HTTP 404, `NF01`).
+- [x] **Positive Test Cases**
+  - [x] Test Case 1: Execute full card creation and verify HTTP 200 and data mapping.
+  - [x] Test Case 2: Verify slug auto-generation from title (HTTP 200).
+  - [x] Test Case 3: Create a private card and verify the `access_code` is returned (HTTP 200).
+  - [x] Test Case 4: Retrieve a public, published card successfully (HTTP 200).
+  - [x] Test Case 5: Retrieve a private card with the correct pin (HTTP 200).
+  - [x] Test Case 6: Delete a card and verify the response structure (HTTP 200).
+- [x] **Negative / Edge Test Cases**
+  - [x] Test Case 7: Create a card with a duplicate slug (Expect HTTP 400, `SL02`).
+  - [x] Test Case 8: Create a private card missing the `access_code` (Expect HTTP 400, `AC01`).
+  - [x] Test Case 9: Create a public card with an `access_code` (Expect HTTP 400, `AC05`).
+  - [x] Test Case 10: Trigger a framework validation failure, e.g., invalid status (Expect HTTP 400).
+  - [x] Test Case 11: Attempt to retrieve a non-existent card (Expect HTTP 404, `NF01`).
+  - [x] Test Case 12: Attempt to retrieve a draft card (Expect HTTP 404, `NF02`).
+  - [x] Test Case 13: Attempt to retrieve a private card without a pin (Expect HTTP 403, `AC03`).
+  - [x] Test Case 14: Attempt to retrieve a private card with a wrong pin (Expect HTTP 403, `AC04`).
+  - [x] Test Case 15: Attempt to delete a non-existent card (Expect HTTP 404, `NF01`).
+  - [x] Test Case 16: Attempt to retrieve a previously deleted card (Expect HTTP 404, `NF01`).
 
 ### 7. Deployment & Submission
 - [ ] **Platform Deployment**
