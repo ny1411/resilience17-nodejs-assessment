@@ -37,45 +37,45 @@ Build a **Creator Card microservice API** that lets creators publish a shareable
   - [x] Map the internal `_id` to `id` (ULID string) in all API responses using Mongoose transforms or a dedicated serialization function.
 
 ### 3. Endpoint 1: Create Creator Card (`POST /creator-cards`)
-- [ ] **Scaffold and Input Validation**
-  - [ ] Create the endpoint route and controller following the backend template structure.
-  - [ ] Implement request body validation using the template's Validator DSL (VSL). Ensure it returns HTTP 400 for structural failures (e.g., missing fields, invalid types, length constraints).
-- [ ] **Implement Business Logic: Slug Auto-Generation**
-  - [ ] Check if the `slug` is omitted from the request.
-  - [ ] If omitted: Lowercase the `title`, replace whitespace with hyphens (`-`), and strip out any characters that are not letters, numbers, hyphens, or underscores.
-  - [ ] If the resulting auto-generated slug is shorter than 5 characters OR already exists in the database, append a hyphen followed by a random 6-character alphanumeric suffix.
-- [ ] **Implement Business Logic: Error Handling**
-  - [ ] Validate slug uniqueness: If the client provides a `slug` that already exists, throw an error and return custom error code `SL02` with HTTP 400.
-  - [ ] Validate private access: If `access_type` is `private`, ensure `access_code` is provided. If missing, return custom error code `AC01` with HTTP 400.
-  - [ ] Validate public access: If `access_type` is `public` (or omitted), ensure `access_code` is NOT provided. If present, return custom error code `AC05` with HTTP 400.
-- [ ] **Finalize Creation**
-  - [ ] Save the document to MongoDB. Default `access_type` to `public` if not specified.
-  - [ ] Return the created card (including `access_code`) with HTTP 200 using the specified JSON structure.
+- [x] **Scaffold and Input Validation**
+  - [x] Create the endpoint route and controller following the backend template structure.
+  - [x] Implement request body validation using the template's Validator DSL (VSL). Ensure it returns HTTP 400 for structural failures (e.g., missing fields, invalid types, length constraints).
+- [x] **Implement Business Logic: Slug Auto-Generation**
+  - [x] Check if the `slug` is omitted from the request.
+  - [x] If omitted: Lowercase the `title`, replace whitespace with hyphens (`-`), and strip out any characters that are not letters, numbers, hyphens, or underscores.
+  - [x] If the resulting auto-generated slug is shorter than 5 characters OR already exists in the database, append a hyphen followed by a random 6-character alphanumeric suffix.
+- [x] **Implement Business Logic: Error Handling**
+  - [x] Validate slug uniqueness: If the client provides a `slug` that already exists, throw an error and return custom error code `SL02` with HTTP 400.
+  - [x] Validate private access: If `access_type` is `private`, ensure `access_code` is provided. If missing, return custom error code `AC01` with HTTP 400.
+  - [x] Validate public access: If `access_type` is `public` (or omitted), ensure `access_code` is NOT provided. If present, return custom error code `AC05` with HTTP 400.
+- [x] **Finalize Creation**
+  - [x] Save the document to MongoDB. Default `access_type` to `public` if not specified.
+  - [x] Return the created card (including `access_code`) with HTTP 200 using the specified JSON structure.
 
 ### 4. Endpoint 2: Public Card Retrieval (`GET /creator-cards/:slug`)
-- [ ] **Scaffold Endpoint**
-  - [ ] Create the endpoint route to accept a `slug` URL parameter and an optional `access_code` query parameter.
-- [ ] **Implement Access Rules and Error Handling** (Must be applied in this exact order):
-  - [ ] Fetch the card by `slug`. If it does not exist, return HTTP 404 with error code `NF01`.
-  - [ ] Check `status`: If the card is a `draft`, return HTTP 404 with error code `NF02`.
-  - [ ] Check `access_type`: If the card is `private`, verify the `access_code`.
-    - [ ] If no `access_code` query parameter is supplied, return HTTP 403 with error code `AC03`.
-    - [ ] If the supplied `access_code` does not match the database, return HTTP 403 with error code `AC04`.
-- [ ] **Finalize Retrieval**
-  - [ ] Strip the `access_code` from the card data before returning it.
-  - [ ] Return the card data with HTTP 200 using the specified JSON structure.
+- [x] **Scaffold Endpoint**
+  - [x] Create the endpoint route to accept a `slug` URL parameter and an optional `access_code` query parameter.
+- [x] **Implement Access Rules and Error Handling** (Must be applied in this exact order):
+  - [x] Fetch the card by `slug`. If it does not exist, return HTTP 404 with error code `NF01`.
+  - [x] Check `status`: If the card is a `draft`, return HTTP 404 with error code `NF02`.
+  - [x] Check `access_type`: If the card is `private`, verify the `access_code`.
+    - [x] If no `access_code` query parameter is supplied, return HTTP 403 with error code `AC03`.
+    - [x] If the supplied `access_code` does not match the database, return HTTP 403 with error code `AC04`.
+- [x] **Finalize Retrieval**
+  - [x] Strip the `access_code` from the card data before returning it.
+  - [x] Return the card data with HTTP 200 using the specified JSON structure.
 
 ### 5. Endpoint 3: Delete Creator Card (`DELETE /creator-cards/:slug`)
-- [ ] **Scaffold and Input Validation**
-  - [ ] Create the endpoint route.
-  - [ ] Validate the request body to ensure it contains a `creator_reference` of exactly 20 characters.
-- [ ] **Implement Business Logic**
-  - [ ] Fetch the card by the given `slug`.
-  - [ ] If the card does not exist, return HTTP 404 with error code `NF01`.
-  - [ ] Perform a soft or hard delete of the card. If soft-deleting, update the `deleted` timestamp to the current Unix epoch time.
-  - [ ] Verify that deleted cards will no longer be retrievable by Endpoint 2 (Endpoint 2 should return `NF01`).
-- [ ] **Finalize Deletion**
-  - [ ] Return the deleted card data (in the same format as the creation response) with HTTP 200.
+- [x] **Scaffold and Input Validation**
+  - [x] Create the endpoint route.
+  - [x] Validate the request body to ensure it contains a `creator_reference` of exactly 20 characters.
+- [x] **Implement Business Logic**
+  - [x] Fetch the card by the given `slug`.
+  - [x] If the card does not exist, return HTTP 404 with error code `NF01`.
+  - [x] Perform a soft or hard delete of the card. If soft-deleting, update the `deleted` timestamp to the current Unix epoch time.
+  - [x] Verify that deleted cards will no longer be retrievable by Endpoint 2 (Endpoint 2 should return `NF01`).
+- [x] **Finalize Deletion**
+  - [x] Return the deleted card data (in the same format as the creation response) with HTTP 200.
 
 ### 6. Verification & Testing
 - [ ] **Positive Test Cases**
