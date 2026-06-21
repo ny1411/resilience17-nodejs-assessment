@@ -32,6 +32,20 @@ async function createCreatorCardService(serviceData) {
   // 1. Validate incoming data
   const validatedData = validator.validate(serviceData, parsedSpec);
 
+  if (validatedData.links) {
+    validatedData.links.forEach((link) => {
+      if (!link.url.startsWith('http://') && !link.url.startsWith('https://')) {
+        throwAppError('URL must start with http:// or https://', 'VALIDATION_ERROR');
+      }
+    });
+  }
+
+  if (validatedData.access_code) {
+    if (!/^[a-zA-Z0-9]{6}$/.test(validatedData.access_code)) {
+      throwAppError('access_code must be exactly 6 alphanumeric characters', 'VALIDATION_ERROR');
+    }
+  }
+
   // 2. Slug Auto-Generation
   let finalSlug = validatedData.slug;
   if (!finalSlug) {

@@ -609,6 +609,13 @@ curl -X POST http://localhost:3000/payment-instructions \
 
 **3. Test with Postman or Thunder Client (VS Code extension)**
 
+**4. Run Automated Integration Tests:**
+You can run the full suite of integration tests (including 25 edge cases) by executing:
+```bash
+node run-tests.js
+```
+*Note: This will test against the deployed instance by default unless `TARGET_URL` is set.*
+
 ### Logging
 
 Use the built-in logger (never use `console.log`):
